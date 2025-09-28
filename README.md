@@ -15,7 +15,7 @@ It manages employees, documents, and user accounts with a layered service–repo
 ---
 
 ## Project Structure
-Huly.sln                    -> Solution file
+Employee-Management.sln     -> Solution file
 employeeManagement/         -> Main project
 ├── Program.cs              -> Entry point
 ├── appsettings.json        -> Configurations
