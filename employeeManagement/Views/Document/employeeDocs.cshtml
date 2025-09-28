@@ -1,0 +1,70 @@
+﻿@model List<Document>
+
+@{
+    ViewData["Title"] = "Employee Documents";
+    var employeeId = ViewBag.EmployeeId;
+    var employeeName = ViewBag.EmployeeName;
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h2 class="mb-4">Documents for <span class="text-primary">@employeeName</span></h2>
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+
+            <form asp-action="UploadByAdmin" method="post" enctype="multipart/form-data" class="row g-3 mb-4 align-items-center">
+                <input type="hidden" name="employeeId" value="@employeeId" />
+                <div class="col-md-6">
+                    <label for="file" class="form-label">Upload PDF Document</label>
+                    <input type="file" name="file" accept=".pdf" class="form-control" required />
+                </div>
+                <div class="col-md-2 d-flex align-items-end" >
+                    <button type="submit" class="btn btn-primary w-100" style="margin-top: 32px;">Upload</button>
+                </div>
+            </form>
+
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>File Name</th>
+                        <th class="text-center">Download</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var doc in Model)
+                    {
+                        <tr>
+                            <td>@doc.FileName</td>
+                            <td class="text-center">
+                                <a class="btn btn-sm btn-success" href="@doc.FilePath" download>
+                                    <i class="bi bi-download"></i> Download
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <form asp-action="Delete" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@doc.Id" />
+                                    <input type="hidden" name="employeeId" value="@employeeId" />
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <a asp-controller="Employee" asp-action="Index" class="btn btn-secondary mt-3">Back to Employees</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Include Bootstrap Icons if not already -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
+}

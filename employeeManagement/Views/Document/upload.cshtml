@@ -1,0 +1,9 @@
+﻿@model Document
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="EmployeeId" />
+    <div>
+        <label>Select Document:</label>
+        <input type="file" name="file" />
+    </div>
+    <button type="submit">Upload</button>
+</form>

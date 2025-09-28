@@ -1,0 +1,12 @@
+﻿@model List<Document>
+<h2>My Documents</h2>
+<table>
+    <tr><th>File Name</th><th>Download</th></tr>
+    @foreach (var doc in Model)
+    {
+        <tr>
+            <td>@doc.FileName</td>
+            <td><a asp-action="Download" asp-route-id="@doc.Id">Download</a></td>
+        </tr>
+    }
+</table>
