@@ -15,7 +15,6 @@ It manages employees, documents, and user accounts with a layered service–repo
 ---
 
 ## Project Structure
-\`\`\`
 Huly.sln                    -> Solution file
 employeeManagement/         -> Main project
 ├── Program.cs              -> Entry point
@@ -25,7 +24,6 @@ employeeManagement/         -> Main project
 ├── Repositories/           -> Implementations
 ├── Controllers/            -> MVC + API controllers
 └── Models/                 -> Entity classes
-\`\`\`
 
 ---
 
